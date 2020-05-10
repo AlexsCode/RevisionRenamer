@@ -14,6 +14,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QStringList file_names;
+    QStringList splitbyline;
+
 
 private slots:
     void on_pushButton_FileLocation_clicked();
@@ -24,7 +27,10 @@ private slots:
 
     void calculations();
 
+    void on_pushButton_Rename_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
+
 #endif // MAINWINDOW_H
