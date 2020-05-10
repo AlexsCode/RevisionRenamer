@@ -26,12 +26,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_FileLocation_clicked()
 {   file_names = QFileDialog::getOpenFileNames(this,"directory","");
-
-
-   // QFileDialog::filesSelected();
     QString file_list = file_names.join(",");
-    //QFileInfo fileinfo(file_list.fileName());
-    //ui->textEdit->setText(file_list);
+
     //filter removed ||C://Users/","RVTs,IFCs,NWCs,TXT(*rvt,*ifc,*nwc,*txt)
 
 
@@ -60,22 +56,29 @@ void MainWindow::on_pushButton_Rename_clicked()
     for (int j=0;j<file_names.size();j++)
          for (int i=0;i<splitbyline.size();i++)
              {  QFile file(file_names[j]); //THIS IS IT
-                QFileInfo fileinfo(file.fileName());
-                QString singlefilename(fileinfo.fileName());
-                QString Filetype = (singlefilename.right(4));
-                QString Filename_notype = singlefilename.remove(Filetype);
+                QFileInfo targetfileinfo(file.fileName());
+                QFileInfo sourcepath(targetfileinfo.path());
+                QString singlefilename(targetfileinfo.fileName());
+                QString FileType(targetfileinfo.completeSuffix());//Allows for many filetypes.
+                QString Filename_notype (targetfileinfo.baseName()) ;
+                //QString Filename_notype = singlefilename.remove(FileType);
+
 
                 if(splitbyline[i].contains(Filename_notype))
-                 {
-                     QString specificline = splitbyline[i];
-                     QString Revision = specificline.right(3);
-                     QString Copyvalue= (Filename_notype+"_"+Revision+Filetype);
-                     ui->textEdit_output->setText(Copyvalue);
+                 {   QString Revision = (splitbyline[i].right(3));
+                     //QString FileType(targetfileinfo.completeSuffix());
+                     QString Copyvalue= (Filename_notype+"_"+Revision+"."+FileType);//name of the copy
+
+                     //test outputs
+
                      ui->comboBox_output->addItem(Revision);
                      ui->comboBox_output->addItem(file_names[j]);
-                     QFile file2(file_names[j]);
-                     file2.fileName();
-                     file2.copy(Copyvalue);
+
+                     QString Path (sourcepath.filePath());
+                     QString targetPath = (Path+"/"+Copyvalue);
+                     ui->textEdit_output->setText(targetPath);
+
+                     file.copy(targetPath);
 
                      //QFile copy is broken
 
