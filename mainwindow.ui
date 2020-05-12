@@ -14,17 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>60</y>
-      <width>211</width>
-      <height>61</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -78,11 +68,11 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>220</y>
+      <x>550</x>
+      <y>60</y>
       <width>191</width>
       <height>219</height>
      </rect>
@@ -91,34 +81,12 @@
      <item alignment="Qt::AlignHCenter">
       <widget class="QLabel" name="label_Output">
        <property name="text">
-        <string>Test Output</string>
+        <string>Files with Revision Added!</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QTextEdit" name="textEdit_output"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>130</y>
-      <width>191</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
-     <item alignment="Qt::AlignHCenter">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>TestCombo</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="comboBox_output"/>
      </item>
     </layout>
    </widget>

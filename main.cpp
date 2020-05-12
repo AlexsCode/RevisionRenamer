@@ -3,7 +3,7 @@
 #include <QApplication>
 
 int main(int argc, char *argv[])
-{
+{   //Default Create window
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

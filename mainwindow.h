@@ -14,20 +14,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QStringList file_names;
-    QStringList splitbyline;
+    QStringList file_names; //Set the file names/paths as global
+    QStringList splitbyline; //Sets Text input as global
 
 
 private slots:
-    void on_pushButton_FileLocation_clicked();
+    void on_pushButton_FileLocation_clicked(); //Button to start file search.
 
-    void on_textEdit_textChanged();
+    void on_textEdit_textChanged(); //Function when main text input recieves text.
 
-    void on_lineEdit_textChanged(const QString &arg1);
-
-    void calculations();
-
-    void on_pushButton_Rename_clicked();
+    void on_pushButton_Rename_clicked(); //Button to add the Revision.
 
 private:
     Ui::MainWindow *ui;
