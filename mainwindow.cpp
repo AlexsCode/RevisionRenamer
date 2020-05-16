@@ -53,7 +53,8 @@ void MainWindow::on_pushButton_Rename_clicked()
 
 
                 if(splitbyline[i].contains(Filename_notype)) // searches if finalname is in the text input
-                 {   QString Revision = (splitbyline[i].right(3)); //splits the revision from the end of the substring splitbyline
+                 {   ui->textEdit_output->clear();
+                     QString Revision = (splitbyline[i].right(3)); //splits the revision from the end of the substring splitbyline
                      QString Copyvalue= (Filename_notype+"_"+Revision+"."+FileType);//sets what the copy should be named
 
                      //test outputs - Used for debugging
@@ -65,7 +66,7 @@ void MainWindow::on_pushButton_Rename_clicked()
                      //ui->textEdit_output->setText(targetPath); // Show the exact new path+name.|can be removed
 
                      file.copy(targetPath); //Actual copy Operation assuming if is true.
-
+                     ui->textEdit_output->setText("Revision Added Successfully!");
                    }
               }
 }
@@ -86,13 +87,16 @@ void MainWindow::on_pushButton_RemoveRevisions_clicked()
 
 
             if (Filename_notype.contains("_"))
-            { QString underscore= "_" ;//sets a string of just char underscore
+            { ui->textEdit_output->clear();
+
+              QString underscore= "_" ;//sets a string of just char underscore
               int underscore_position =Filename_notype.indexOf(underscore);
               QString Revisionless_name = (Filename_notype.remove(underscore_position,(Filename_notype.size()) ));
               QString Copyvalue= (Filename_notype+"."+FileType);
               QString Path (sourcepath.filePath()); //finds the full path
               QString targetPath = (Path+"/"+Copyvalue); //adds the path to the prefered name
               file.copy(targetPath);
+              ui->textEdit_output->setText("Revision Removed Successfully!");
 
             //}
         }
