@@ -7,6 +7,7 @@
 #include <QString>
 #include <QFileDialog>
 #include <QStringListIterator>
+#include <QCheckBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -65,8 +66,16 @@ void MainWindow::on_pushButton_Rename_clicked()
                      QString targetPath = (Path+"/"+Copyvalue); //adds the path to the prefered name
                      //ui->textEdit_output->setText(targetPath); // Show the exact new path+name.|can be removed
 
-                     file.copy(targetPath); //Actual copy Operation assuming if is true.
-                     ui->textEdit_output->setText("Revision Added Successfully!");
+                     if(ui->checkBox_delete_on_rename->isChecked()){
+                          file.copy(targetPath);
+                          file.remove(file_names[j]);
+                          ui->textEdit_output->setText("Revision Added Successfully!\n Original File Deleted");
+                     }
+                     else
+                     {
+                         file.copy(targetPath);
+                         ui->textEdit_output->setText("Revision Added Successfully!\n Original File Left");
+                     }
                    }
               }
 }
@@ -95,10 +104,20 @@ void MainWindow::on_pushButton_RemoveRevisions_clicked()
               QString Copyvalue= (Filename_notype+"."+FileType);
               QString Path (sourcepath.filePath()); //finds the full path
               QString targetPath = (Path+"/"+Copyvalue); //adds the path to the prefered name
-              file.copy(targetPath);
-              ui->textEdit_output->setText("Revision Removed Successfully!");
+
+                if(ui->checkBox_delete_on_rename->isChecked()){
+                     file.copy(targetPath);
+                     file.remove(file_names[j]);
+                     ui->textEdit_output->setText("Revision Removed Successfully!\n Original File Deleted");
+                }
+                else
+                {
+                    file.copy(targetPath);
+                    ui->textEdit_output->setText("Revision Removed Successfully!\n Original File Left");
+                }
 
             //}
         }
     }
 }
+

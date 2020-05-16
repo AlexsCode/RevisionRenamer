@@ -27,6 +27,7 @@ private slots:
 
     void on_pushButton_RemoveRevisions_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 };
