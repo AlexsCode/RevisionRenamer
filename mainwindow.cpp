@@ -69,3 +69,32 @@ void MainWindow::on_pushButton_Rename_clicked()
                    }
               }
 }
+
+void MainWindow::on_pushButton_RemoveRevisions_clicked()
+{   //Finds all files with the name+Revision
+    //Detects specifically what the revision is
+    //Creates a copy without the revision.
+    for (int j=0;j<file_names.size();j++){
+        //for (int i=0;i<splitbyline.size();i++)
+        //{
+            QFile file(file_names[j]); //Creates and assigns file from filepath
+            QFileInfo targetfileinfo(file.fileName()); //finds the file name
+            QFileInfo sourcepath(targetfileinfo.path()); //finds the file path
+            QString singlefilename(targetfileinfo.fileName()); // unsure if still required|
+            QString FileType(targetfileinfo.completeSuffix());//Saves filetype |Allows for many filetypes.
+            QString Filename_notype (targetfileinfo.baseName()); //Saves filename without the filetype
+
+
+            if (Filename_notype.contains("_"))
+            { QString underscore= "_" ;//sets a string of just char underscore
+              int underscore_position =Filename_notype.indexOf(underscore);
+              QString Revisionless_name = (Filename_notype.remove(underscore_position,(Filename_notype.size()) ));
+              QString Copyvalue= (Filename_notype+"."+FileType);
+              QString Path (sourcepath.filePath()); //finds the full path
+              QString targetPath = (Path+"/"+Copyvalue); //adds the path to the prefered name
+              file.copy(targetPath);
+
+            //}
+        }
+    }
+}

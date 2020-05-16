@@ -25,6 +25,8 @@ private slots:
 
     void on_pushButton_Rename_clicked(); //Button to add the Revision.
 
+    void on_pushButton_RemoveRevisions_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
